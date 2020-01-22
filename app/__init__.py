@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from app.main.models.db_accessor import setup_tables
 from app.main.service.list_service import ListService
+from app.main.service.word_service import WordService
 
 app = Flask(__name__)
 
@@ -34,13 +35,12 @@ def delete_list(list_id):
 # Word related methods
 @app.route("/lists/<list_id>/words", methods=["GET"])
 def get_words_in_list(list_id):
-    pass
-    # return EasyStudyService().add_word(request.get_json())
+    return jsonify(WordService().get_words_in_list(list_id))
 
 
 @app.route("/lists/<list_id>/words", methods=["POST"])
 def add_word_to_list(list_id):
-    pass
+    return WordService().add_word_to_list(list_id, request.get_json())
 
 
 @app.route("/lists/<list_id>/words/<word_id>", methods=["DELETE"])

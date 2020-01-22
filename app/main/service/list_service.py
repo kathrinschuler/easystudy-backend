@@ -1,5 +1,4 @@
 from app.main.models.list_model import ListModel
-import uuid
 
 
 class ListService:
@@ -7,9 +6,8 @@ class ListService:
         self.model = ListModel()
 
     def create_list(self, params):
-        list_id = str(uuid.uuid4())
         # TODO: error handling if insert fails
-        self.model.create_list(list_id, params['title'])
+        list_id = self.model.create_list(params['title'])
         response_object = {
             'listId': list_id,
             'title': params['title']

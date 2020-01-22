@@ -1,13 +1,25 @@
 from app.main.models.word_model import WordModel
 
 
-class ListService:
+class WordService:
     def __init__(self):
         self.model = WordModel()
 
-    def add_word(self, params):
-        return self.model.create(params["original"], params["translation"], params["sentence"])
+    def add_word_to_list(self, list_id, params):
+        # TODO: error handling if insert fails
 
-    def list(self):
-        return self.model.list_words()
+        self.model.add_word_to_list(
+            list_id,
+            params['original'],
+            params['translation']
+        )
+        response_object = {
+            'listId': list_id,
+            'original': params['original'],
+            'translation': params['translation']
+        }
 
+        return response_object, 201, {'Location': f'/lists/{list_id}/words'}
+
+    def get_words_in_list(self, list_id):
+        return self.model.get_words_in_list(list_id)

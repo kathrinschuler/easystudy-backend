@@ -1,5 +1,5 @@
 import sqlite3
-
+import uuid
 
 class ListModel:
     TABLENAME = "lists"
@@ -7,7 +7,8 @@ class ListModel:
     def __init__(self):
         self.conn = sqlite3.connect('easystudy.db')
 
-    def create_list(self, list_id, title):
+    def create_list(self, title):
+        list_id = str(uuid.uuid4())
         query = f"INSERT INTO {self.TABLENAME} " \
                 f"(id, title) " \
                 f"VALUES (?,?)"
