@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from models.schema import Schema
+from models.db_accessor import Schema
 from service.service import EasyStudyService
 
 app = Flask(__name__)
