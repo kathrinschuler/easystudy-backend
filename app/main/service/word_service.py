@@ -1,7 +1,7 @@
-from models.wordmodel import WordModel
+from app.main.models.word_model import WordModel
 
 
-class EasyStudyService:
+class ListService:
     def __init__(self):
         self.model = WordModel()
 
